@@ -1,0 +1,31 @@
+{
+  "name": "video-cache-downloader",
+  "version": "1.0.0",
+  "description": "浏览器视频缓存下载插件 - 自动检测网页视频并下载",
+  "type": "module",
+  "scripts": {
+    "dev": "node build.js --dev",
+    "build": "node build.js",
+    "package": "node build.js",
+    "lint": "eslint src/**/*.js"
+  },
+  "keywords": [
+    "browser-extension",
+    "video-downloader",
+    "ffmpeg",
+    "chrome-extension"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "archiver": "^6.0.1",
+    "esbuild": "^0.20.0",
+    "eslint": "^8.57.0"
+  },
+  "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.7",
+    "@ffmpeg/util": "^0.12.1",
+    "file-saver": "^2.0.5",
+    "jszip": "^3.10.1"
+  }
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="popupTitle">视频下载</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="title">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span data-i18n="popupTitle">视频下载</span>
+      </h1>
+      <div class="header-actions">
+        <button id="settingsBtn" class="icon-btn" title="设置">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <button id="scanBtn" class="btn btn-primary">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <span data-i18n="scanButton">扫描视频</span>
+      </button>
+      <div class="toolbar-spacer"></div>
+      <button id="selectAllBtn" class="btn btn-secondary" disabled>
+        <span data-i18n="selectAll">全选</span>
+      </button>
+    </div>
+
+    <div id="statusBar" class="status-bar">
+      <span id="statusText" data-i18n="noVideosFound">未检测到视频</span>
+    </div>
+
+    <div id="videoList" class="video-list">
+      <div class="empty-state">
+        <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+          <line x1="7" y1="2" x2="7" y2="22"></line>
+          <line x1="17" y1="2" x2="17" y2="22"></line>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <line x1="2" y1="7" x2="7" y2="7"></line>
+          <line x1="2" y1="17" x2="7" y2="17"></line>
+          <line x1="17" y1="17" x2="22" y2="17"></line>
+          <line x1="17" y1="7" x2="22" y2="7"></line>
+        </svg>
+        <p class="empty-text" data-i18n="noVideosFound">点击"扫描视频"检测当前页面视频</p>
+      </div>
+    </div>
+
+    <div id="progressSection" class="progress-section hidden">
+      <div class="progress-header">
+        <span id="progressLabel">正在下载...</span>
+        <span id="progressPercent">0%</span>
+      </div>
+      <div class="progress-bar">
+        <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+      </div>
+      <div id="progressDetail" class="progress-detail"></div>
+    </div>
+
+    <div id="actionBar" class="action-bar hidden">
+      <div class="selection-info">
+        <span id="selectedCount" data-i18n="selectedCount">已选择 0 个</span>
+        <span id="totalSize" data-i18n="totalSize">总计: 0 B</span>
+      </div>
+      <div class="action-buttons">
+        <button id="convertBtn" class="btn btn-secondary" disabled>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+          </svg>
+          <span>转换</span>
+        </button>
+        <button id="downloadBtn" class="btn btn-success" disabled>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span data-i18n="downloadButton">下载选中</span>
+        </button>
+        <button id="packBtn" class="btn btn-primary" disabled>
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 8v13H3V8"></path>
+            <path d="M1 3h22v5H1z"></path>
+            <path d="M10 12h4"></path>
+          </svg>
+          <span data-i18n="packButton">打包下载</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="formatModal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>选择输出格式</h3>
+          <button id="closeModalBtn" class="icon-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="format-options">
+            <label class="format-option">
+              <input type="radio" name="format" value="mp4" checked>
+              <div class="format-card">
+                <span class="format-name">MP4</span>
+                <span class="format-desc">通用格式，兼容性最好</span>
+              </div>
+            </label>
+            <label class="format-option">
+              <input type="radio" name="format" value="webm">
+              <div class="format-card">
+                <span class="format-name">WebM</span>
+                <span class="format-desc">更小体积，适合网页</span>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="cancelFormatBtn" class="btn btn-secondary">取消</button>
+          <button id="confirmFormatBtn" class="btn btn-primary">确认</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>

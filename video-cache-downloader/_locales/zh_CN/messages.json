@@ -1,0 +1,108 @@
+{
+  "extName": {
+    "message": "视频缓存下载器",
+    "description": "插件名称"
+  },
+  "extDescription": {
+    "message": "自动检测网页视频并提供下载功能，支持批量打包",
+    "description": "插件描述"
+  },
+  "popupTitle": {
+    "message": "视频下载",
+    "description": "弹窗标题"
+  },
+  "scanButton": {
+    "message": "扫描视频",
+    "description": "扫描按钮文本"
+  },
+  "downloadButton": {
+    "message": "下载选中",
+    "description": "下载按钮文本"
+  },
+  "downloadAllButton": {
+    "message": "下载全部",
+    "description": "下载全部按钮文本"
+  },
+  "packButton": {
+    "message": "打包下载",
+    "description": "打包下载按钮文本"
+  },
+  "noVideosFound": {
+    "message": "未检测到视频",
+    "description": "无视频时的提示"
+  },
+  "scanning": {
+    "message": "正在扫描...",
+    "description": "扫描中提示"
+  },
+  "downloading": {
+    "message": "正在下载...",
+    "description": "下载中提示"
+  },
+  "processing": {
+    "message": "正在处理...",
+    "description": "处理中提示"
+  },
+  "packaging": {
+    "message": "正在打包...",
+    "description": "打包中提示"
+  },
+  "completed": {
+    "message": "完成",
+    "description": "完成提示"
+  },
+  "error": {
+    "message": "错误",
+    "description": "错误提示"
+  },
+  "retry": {
+    "message": "重试",
+    "description": "重试按钮文本"
+  },
+  "selectAll": {
+    "message": "全选",
+    "description": "全选按钮文本"
+  },
+  "deselectAll": {
+    "message": "取消全选",
+    "description": "取消全选按钮文本"
+  },
+  "videoCount": {
+    "message": "共 $COUNT$ 个视频",
+    "description": "视频数量提示",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "selectedCount": {
+    "message": "已选择 $COUNT$ 个",
+    "description": "已选数量提示",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "totalSize": {
+    "message": "总计: $SIZE$",
+    "description": "总大小提示",
+    "placeholders": {
+      "size": {
+        "content": "$1",
+        "example": "100 MB"
+      }
+    }
+  },
+  "unknownDuration": {
+    "message": "未知时长",
+    "description": "未知时长提示"
+  },
+  "unknownSize": {
+    "message": "未知大小",
+    "description": "未知大小提示"
+  }
+}
